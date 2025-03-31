@@ -1,0 +1,17 @@
+// 针对Pad设备的样式
+
+// 假设Pad的最小宽度是800px，查询屏幕宽度使用alert(window.innerWidth) 
+@screen-pad-min-width: 800px;
+
+/**
+ * 使用媒体查询来应用Pad样式
+ * 1.如果某个页面需要针对Pad设备定制样式，需要在页面.vue文件的根节点增加class="page-pad-xxx"(避免样式冲突)，然后在这里增加对应的样式
+ */
+@media (min-width: @screen-pad-min-width) {
+	// 客户页面Pad定制化样式
+	// .page-pad-customer {
+	// 	&-operate {
+			
+	// 	}
+	// }
+}

@@ -1,0 +1,4 @@
+config/*.js
+htdocs/*.js
+origin/*.js
+node_modules/

@@ -1,0 +1,110 @@
+# 包管理工具，限定 npm / pnpm / yarn
+packageManager: &packageManager npm
+# 构建工具包，默认为 ${packageManager}
+# npm / pnpm / yarn / npx / ace / ares
+buildToolkit: *packageManager
+# 版本限定
+engines:
+  node: '>=14 <15'
+  npm: '>=6 <7'
+  pnpm: '7.32.2'
+  yarn: '>=1 <2'
+  lockfile: '1'
+# 基于${WORKSPACE}目录
+directories:
+  # 脚本运行目录，默认指向${app_dir}目录，根目录时配置“.”
+  run_dir: .
+  # 应用目录，不配置自动指向 ${WORKSPACE} 目录下的 app 目录，根目录时配置“.”
+  app_dir: .
+  # 应用源码目录，不配置时自动指向 ${app_dir}/src 目录
+  source_dir: src
+  # 构建产物目录，不配置时自动指向与 ${app_dir} 同级的 htdocs 目录
+  bundle_dir: htdocs
+  # 构建产物静态资源目录，不配置自动指向 ${bundle}/res 目录
+  assets_dir: htdocs/res
+  # 代码扫描目录，不配置时使用 ${source_dir} 目录
+  scan_dir: src
+# 产物包目录清单，基于${WORKSPACE}目录
+tarball:
+  # 基础目录，勿动，将会影响部署及nginx配置
+  base: htdocs
+  # 附加目录(static / nodejs)
+  additional:
+    nodejs:
+      - bin
+      - sbin
+      - ecosystem.config.js
+      - nodeserver.config.js
+stages:
+  # CICD指令更新检测
+  checkupdate:
+    enabled: true
+    xargs: --auto
+  # engines限定检测
+  checkengines:
+    enabled: true
+  # 依赖安装，切换到${app_dir}目录，执行
+  # ${packageManager} ${commands}
+  install:
+    enabled: true
+    commands:
+      - command: install
+        xargs:
+  # 构建，切换到${app_dir}目录，如果有配置env并且当前环境$ENV有匹配项执行env下的指令，
+  # 否则执行顶层的，默认为build
+  # ${buildToolkit} ${commands}
+  build:
+    enabled: true
+    # 是否启用多包构建，多包构建按env进行处理，启用多包构建后耗时将会更久
+    multipack: false
+    commands:
+      - command: run
+        xargs: build
+    env:
+      test:
+        enabled: true
+        commands:
+          - command: run
+            xargs: build:stable
+      pre:
+        enabled: true
+        commands:
+          - command: run
+            xargs: build:prod
+      gray:
+        enabled: true
+        commands:
+          - command: run
+            xargs: build:gray
+      prod:
+        enabled: true
+        commands:
+          - command: run
+            xargs: build:prod
+      # oa:
+      #   enabled: true
+      #   commands:
+      #     -
+      #       command: run
+      #       xargs: build:oa
+  # 安全审计
+  audit:
+    enabled: true
+  # 单元测试
+  unit_test:
+    enabled: true
+  # 代码度量分析，包括：代码注释率、重复率、复杂度等
+  code_metric:
+    enabled: true
+  # 依赖扫描
+  dependency:
+    enabled: true
+  # 资源分析
+  resource:
+    enabled: true
+  # 差分包/离线包（patch）
+  diff:
+    enabled: false
+    env:
+      test:
+        enabled: false

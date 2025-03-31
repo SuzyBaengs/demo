@@ -1,0 +1,10 @@
+src/application/logs/
+node_modules/
+.idea/
+.vscode
+htdocs/res/local
+.yarnrc
+yarn.lock
+htdocs/
+package-lock.json
+.overrides/

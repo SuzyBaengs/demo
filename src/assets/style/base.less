@@ -1,0 +1,75 @@
+html {
+  font-size: @proportion * 100vw;
+
+  @media screen and (max-width: @min_wdith * 1px) {
+    font-size: @min_wdith * @proportion * 1px;
+  }
+  @media screen and (min-width: @max_wdith * 1px) {
+    font-size: @max_wdith * @proportion * 1px;
+  }
+}
+body {
+  margin: 0 auto;
+}
+
+#container {
+  min-height: 100vh;
+}
+
+.g-watermark {
+  pointer-events: none;
+  background-repeat: repeat;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: @watermarkIndex;
+  opacity: 0.15;
+  text-align: center;
+  display: block;
+}
+
+.f-r {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.jc-sa {
+  justify-content: space-around;
+}
+.jc-c {
+  justify-content: center;
+}
+.jc-sb {
+  justify-content: space-between;
+}
+.line1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.line2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.no-scroll-bar::-webkit-scrollbar {
+  display: none!important;
+  width: 0px;
+  height: 0px;
+}
+
+@font-face {
+  font-family: 'OPPOSans';
+  src: url('./font/OPPOSans-R.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

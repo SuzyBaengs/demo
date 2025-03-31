@@ -1,0 +1,45 @@
+/* 全局less变量，全局可用不需要单独import，通过sass-resources-loader实现全局注入，具体请查看webpack配置 */
+/* 全局企业色 */
+@primaryBlue: #407AFF;
+@secondaryBlue: #89ADFF;
+@primaryOrange: #FF7122;
+@secondaryOrange: #FF8833;
+@primaryGray:#84888F;
+/* 文字 */
+@primaryText:#050C1C;
+@grayText:#74767D;
+@grayIcon: #BCC3CC;
+
+/* 背景色 */
+@primaryBg:#F6F6F7;
+
+/* 链接 */
+@primaryLink:#3B9BFF;
+
+/* 圆角 */
+@primaryRadius: 8px;
+@smallRadius: 4px;
+/* 分割线 */
+@primaryBorder:#EDEDEE;
+
+/* 基准适配设置 */
+@design_width: 750; // 设计稿宽度
+@html_fontsize: 24; // 根字体大小
+@proportion: @html_fontsize / @design_width; // vw比例
+
+@min_wdith: 320; // 最小宽度
+@max_wdith: 750; // 最大宽度
+
+// 动画时间
+@transitionDuration: .3s;
+
+/* 层级关系 */
+
+// 弹层层级最高
+@popupIndex: 999;
+// 水印层级次之
+@watermarkIndex: 990;
+
+@borderOuter: #e7e7e7;
+@borderInner: #E2E5EB;
+@borderArrow: #cacaca;
