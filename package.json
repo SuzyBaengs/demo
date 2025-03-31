@@ -1,9 +1,9 @@
 {
-  "name": "puhui_sales",
+  "name": "demo",
   "version": "1.0.0",
-  "description": "销售系统4.0",
+  "description": "demo",
   "main": "index.js",
-  "homepage": "https://sales.tiqianle.com/",
+  "homepage": "suzybaengs",
   "scripts": {
     "start": "npm run dev",
     "dev": "node ./build/dev.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.fenqile.com:39000/lexin_puhui_group/puhui_sales.git"
+    "url": "suzybaengs"
   },
   "overrides": {
     "@jridgewell/gen-mapping": "0.3.5"
